@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define PROMPT "enseash %%"
+#define PROMPT "enseash %"
 #define WELCOME "Bienvenue dans le Shell ENSEA.\nPour quitter, tapez 'exit'.\n"
 void display_prompt (){
     write(STDOUT_FILENO,PROMPT,strlen(PROMPT));
