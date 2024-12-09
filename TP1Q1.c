@@ -15,10 +15,10 @@ void display_welcome (){
 
 
 int main () {
-    char input [256]
-    display_welcome; // affichage du messge d'accueil
+    char input [256];
+    display_welcome(); // affichage du message d'accueil
      while (1) {
-        display_prompt //affichage du prompt
+        display_prompt(); //affichage du prompt
 
         //Lecture de la saisie de l'utilisateur
         ssize_t n = read(STDIN_FILENO, input, sizeof(input) - 1);
@@ -31,5 +31,5 @@ int main () {
             }
         }
      }
-    return 0
+    return 0;
 }
