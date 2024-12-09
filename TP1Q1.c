@@ -16,7 +16,7 @@ void display_welcome (){
 
 int main () {
     char input [256]
-    display_welcome // affichage du messge d'accueil
+    display_welcome; // affichage du messge d'accueil
      while (1) {
         display_prompt //affichage du prompt
 
