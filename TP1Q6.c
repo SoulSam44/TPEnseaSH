@@ -7,6 +7,7 @@
 #include <time.h>
 
 #define BUFSIZE 256
+#define MAXARGS 25
 #define PROMPT "enseash %%"
 #define PROMPTEX "enseash [exit:%d|%.3f ms] %% "
 #define PROMPTSIG "enseash [sign:%d|%.3f ms] %% "
@@ -34,9 +35,22 @@ void display_welcome (){
     write(STDOUT_FILENO,WELCOME,strlen(WELCOME));
 }
 
+//Function to separate the different arguments
+void parse_input(char *input, char *args[]) {
+    int i = 0;
+    char *token = strtok(input, " \t\n"); 
+    while (token != NULL && i < 25 - 1) {
+        args[i++] = token;
+        token = strtok(NULL, " \t\n");
+    }
+    args[i] = NULL; 
+}
+
+
 
 int main () {
     char input [BUFSIZE];
+    char *args[MAXARGS];
     int return_code = 0; // Initialisation du code de retour
     double elapsed_time = 0.0;
     struct timespec start_time, end_time;
@@ -51,11 +65,18 @@ int main () {
          write(STDOUT_FILENO, "Au revoir\n", 10);
          break;
         }
+
         if (n > 0) {
             input[n] = '\0';  // Terminer correctement la chaîne
             if (strncmp(input, "exit", 4) == 0) {
                 write(STDOUT_FILENO, "Au revoir\n", 10);
                 break;
+            }
+            
+              parse_input(input, args);
+
+            if (args[0] == NULL) {
+                continue; // Si aucune commande n'a été entrée
             }
 
             //Début du chronomètre
@@ -72,7 +93,7 @@ int main () {
             }
             
             if (pid == 0){  //Fils donc exécution de la commande
-             execlp(input, input, (char *)NULL);
+              execvp(args[0], args);
 
                 // Si la commande n'existe pas 
                 perror("execlp");

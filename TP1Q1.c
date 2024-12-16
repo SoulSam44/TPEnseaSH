@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#define BUFSIZE 256
 #define PROMPT "enseash %"
 #define WELCOME "Bienvenue dans le Shell ENSEA.\nPour quitter, tapez 'exit'.\n"
 void display_prompt (){
@@ -15,7 +16,7 @@ void display_welcome (){
 
 
 int main () {
-    char input [256];
+    char input [BUFSIZE];
     display_welcome(); // affichage du message d'accueil
      while (1) {
         display_prompt(); //affichage du prompt

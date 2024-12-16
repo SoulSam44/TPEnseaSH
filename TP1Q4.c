@@ -26,7 +26,7 @@ void display_prompt (int return_code){
 
     }
     else {
-        write(STDOUT_FILENO,buf,strlen(PROMPT));
+        write(STDOUT_FILENO,PROMPT,strlen(PROMPT));
     }
 }
 
@@ -36,7 +36,7 @@ void display_welcome (){
 
 
 int main () {
-    char input [256];
+    char input [BUFSIZE];
     int return_code = 0; // Initialisation du code de retour
     display_welcome(); // affichage du message d'accueil
      while (1) {
