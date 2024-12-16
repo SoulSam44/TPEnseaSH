@@ -96,7 +96,7 @@ int main () {
               execvp(args[0], args);
 
                 // Si la commande n'existe pas 
-                perror("execlp");
+                perror("execvp");
                 exit(EXIT_FAILURE);
 
             } 
