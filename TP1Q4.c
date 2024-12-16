@@ -20,7 +20,7 @@ void display_prompt (int return_code){
          int len = snprintf(buf, BUFSIZE, PROMPTEX, WEXITSTATUS(return_code));
         write(STDOUT_FILENO,buf,len);
     }
-    if (WIFSIGNALED(return_code)){
+    else if (WIFSIGNALED(return_code)){
          int len = snprintf(buf, BUFSIZE, PROMPTSIG, WTERMSIG(return_code));
         write(STDOUT_FILENO,buf,len);
 
@@ -71,8 +71,8 @@ int main () {
 
             } 
             else {  //Le père attend la fin du fils
-                int status = 0;
-                 waitpid(pid, &status, 0);
+                
+                 waitpid(pid, &return_code, 0);
 
             }
         }
