@@ -51,7 +51,7 @@ int main () {
             } 
             else {  //Le père attend la fin du fils
                 int status = 0;
-                wait (&status);
+                 waitpid(pid, &status, 0);
             }
         }
      }
