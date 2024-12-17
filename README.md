@@ -1,4 +1,4 @@
-#TPEnseaSH
+# TP EnseaSH
 
 L'objectif de ce tp est de créer un terminal enseash qui nous permet d'éxécuter des commandes avec plusieurs arguments tout en affichant les codes de retours et le temps d'exécution des commandes.
 
