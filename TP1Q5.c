@@ -17,20 +17,20 @@ void display_prompt (int return_code,double elapsed_time){
 
     char buf[BUFSIZE];
 
-    if (WIFEXITED(return_code)){
+    if (WIFEXITED(return_code)){ //If the process end without interruption we display the return code
         
         int len = snprintf(buf, BUFSIZE, PROMPTEX, WEXITSTATUS(return_code),elapsed_time);
 
         write(STDOUT_FILENO,buf,len);
     }
-    else if (WIFSIGNALED(return_code)){
+    else if (WIFSIGNALED(return_code)){ //If the process is interrupted because of a signal we display the signal code
         
         int len = snprintf(buf, BUFSIZE, PROMPTSIG, WTERMSIG(return_code),elapsed_time);
 
         write(STDOUT_FILENO,buf,len);
 
     }
-    else {
+    else { //Default prompt if no return or signal code
 
         write(STDOUT_FILENO,PROMPT,strlen(PROMPT));
     }
@@ -43,7 +43,7 @@ void display_welcome (){
 
 
 int main () {
-    
+
     char input [BUFSIZE];
     int return_code = 0; 
     double elapsed_time = 0.0;
